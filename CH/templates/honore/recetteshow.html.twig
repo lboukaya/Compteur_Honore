@@ -3,5 +3,8 @@
 {% block body %}
 
     <h1 class="pageTitle">{{ recette.nom }}</h1>
+    {% for ingredient in recette.ingredients %}
+        <p>{{ ingredient.nom }}</p>
+    {% endfor %}
 
 {% endblock %}

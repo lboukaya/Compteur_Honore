@@ -12,6 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Recettes
 {
+
+    /**
+     * @var \Ingredients
+     *
+     * @ORM\ManyToOne(targetEntity="Ingredientsrecettes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="idIngredient")
+     * })
+     */
+    private $ingredients;
+
     /**
      * @var int
      *
@@ -58,6 +69,22 @@ class Recettes
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return \Ingredients
+     */
+    public function getIngredients(): \Ingredients
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * @param \Ingredients $ingredients
+     */
+    public function setIngredients(\Ingredients $ingredients): void
+    {
+        $this->ingredients = $ingredients;
     }
 
 

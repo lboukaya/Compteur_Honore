@@ -41,5 +41,53 @@ class Ingredientsrecettes
      */
     private $idingredient;
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \Recettes
+     */
+    public function getIdrecette(): \Recettes
+    {
+        return $this->idrecette;
+    }
+
+    /**
+     * @param \Recettes $idrecette
+     */
+    public function setIdrecette(\Recettes $idrecette): void
+    {
+        $this->idrecette = $idrecette;
+    }
+
+    /**
+     * @return \Ingredients
+     */
+    public function getIdingredient(): \Ingredients
+    {
+        return $this->idingredient;
+    }
+
+    /**
+     * @param \Ingredients $idingredient
+     */
+    public function setIdingredient(\Ingredients $idingredient): void
+    {
+        $this->idingredient = $idingredient;
+    }
+
 
 }

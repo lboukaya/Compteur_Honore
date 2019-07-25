@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ingredients;
 use App\Entity\Ingredientsrecettes;
 use App\Entity\Recettes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,8 +65,10 @@ class HonoreController extends AbstractController
      * @Route("/recettes/{id}", name="recettes_show")
      */
     public function showRecette($id){
-        $repo = $this->getDoctrine()->getRepository(Recettes::class);
-        $recette = $repo->find($id);
+        $recette = $this->getDoctrine()
+            ->getRepository(Recettes::class)
+            ->find($id);
+
         return $this->render('honore/recetteshow.html.twig', [
             'recette' => $recette
         ]);
