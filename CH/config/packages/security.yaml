@@ -25,7 +25,16 @@ security:
             logout:
                 path: security_logout
                 target: home
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 31536000 # 1 year (in seconds)
+                path:     /    #Where the cookie is put
+                token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
 
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
