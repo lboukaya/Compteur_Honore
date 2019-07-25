@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="form">
+    <section class="form mb-5">
     <h1 class="pageTitle" >Connexion</h1>
 
     <form action="{{ path('security_login') }}" method="post">
@@ -22,7 +22,7 @@
         </div>
     </form>
         <div class="noAccount">
-            <a href="/inscription">Pas encore inscrit ? C'est par ici !</a>
+            <a href="/inscription" class="">Pas encore inscrit ? C'est par ici !</a>
         </div>
 </section>
 

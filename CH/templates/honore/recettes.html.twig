@@ -4,6 +4,16 @@
 
 {% block body %}
 
+<section id="recettes">
+    <h1 class="pageTitle">Les Recettes</h1>
 
+    <p>Voici les recettes disponibles : </p>
+    {% for recette in recettes %}
+
+      <a href="{{ path('recettes_show',  {'id': recette.id}) }}">{{ recette.nom }}<br></a>
+
+    {% endfor %}
+
+</section>
 
 {% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Ingredientsrecettes;
+use App\Entity\Recettes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,8 +14,11 @@ class HonoreController extends AbstractController
      */
     public function index()
     {
+        $repo = $this->getDoctrine()->getRepository(Recettes::class);
+        $recettes = $repo->findAll();
         return $this->render('honore/index.html.twig', [
             'controller_name' => 'HonoreController',
+            'recettes' => $recettes
         ]);
     }
 
@@ -25,14 +30,46 @@ class HonoreController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/404", name="notFound")
+     */
+    public function notFound() {
+        return $this->render('honore/404.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * @Route("/403", name="noPermission")
+     */
+    public function noPersmission() {
+        return $this->render('honore/403.html.twig', [
+
+        ]);
+    }
 
     /**
      * @Route("/recettes", name="recettes")
      */
     public function recettes() {
+        $repo = $this->getDoctrine()->getRepository(Recettes::class);
+        $recettes = $repo->findAll();
         return $this->render('honore/recettes.html.twig', [
-
+            'controller_name' => 'HonoreController',
+            'recettes' => $recettes
         ]);
+    }
+
+    /**
+     * @Route("/recettes/{id}", name="recettes_show")
+     */
+    public function showRecette($id){
+        $repo = $this->getDoctrine()->getRepository(Recettes::class);
+        $recette = $repo->find($id);
+        return $this->render('honore/recetteshow.html.twig', [
+            'recette' => $recette
+        ]);
+
     }
 
     /**
