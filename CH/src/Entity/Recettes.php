@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * Recettes
@@ -14,14 +16,18 @@ class Recettes
 {
 
     /**
-     * @var \Ingredients
+     * @ORM\ManyToMany(targetEntity=Ingredients::class)
+     * @ORM\JoinTable(name="Ingredientsrecettes")
+     * joinColumns={@JoinColumn(name="recette_id", referencedColumnName="ingredients_id")},
+     * inverseJoinColumns={@JoinColumn(name="ingredients_id", referencedColumnName="ingredients_id", unique=true)}
      *
-     * @ORM\ManyToOne(targetEntity="Ingredientsrecettes")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="idIngredient")
-     * })
      */
-    private $ingredients;
+    protected $ingredients;
+
+    public function __construct()
+    {
+        $this->ingredients = new ArrayCollection();
+    }
 
     /**
      * @var int
@@ -72,20 +78,22 @@ class Recettes
     }
 
     /**
-     * @return \Ingredients
+     * @return mixed
      */
-    public function getIngredients(): \Ingredients
+    public function getIngredients()
     {
         return $this->ingredients;
     }
 
     /**
-     * @param \Ingredients $ingredients
+     * @param mixed $ingredients
      */
-    public function setIngredients(\Ingredients $ingredients): void
+    public function setIngredients($ingredients): void
     {
         $this->ingredients = $ingredients;
     }
+
+
 
 
 }

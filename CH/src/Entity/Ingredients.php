@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredients
  *
- * @ORM\Table(name="ingredients", indexes={@ORM\Index(name="unite_mesure", columns={"uniteMesure"})})
+ * @ORM\Table(name="ingredients", indexes={@ORM\Index(name="unite_mesure", columns={"unitesMesure"})})
  * @ORM\Entity
  */
 class Ingredients
@@ -15,11 +15,11 @@ class Ingredients
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="ingredients_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $ingredients_id;
 
     /**
      * @var string
@@ -33,25 +33,33 @@ class Ingredients
      *
      * @ORM\ManyToOne(targetEntity="Unitesmesure")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="uniteMesure", referencedColumnName="id")
+     * @ORM\JoinColumn(name="unitesMesure", referencedColumnName="id")
      * })
      */
-    private $unitemesure;
+    private $unitesmesure;
+
+    /**
+     * @var int
+     *
+     * @ORM\JoinTable(name="Ingredientsrecettes")
+     * })
+     */
+    private $quantite;
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getIngredients_id(): int
     {
-        return $this->id;
+        return $this->ingredients_id;
     }
 
     /**
-     * @param int $id
+     * @param int $ingredients_id
      */
-    public function setId(int $id): void
+    public function setIngredients_id(int $ingredients_id): void
     {
-        $this->id = $id;
+        $this->ingredients_id = $ingredients_id;
     }
 
     /**
@@ -73,17 +81,33 @@ class Ingredients
     /**
      * @return \Unitesmesure
      */
-    public function getUnitemesure(): \Unitesmesure
+    public function getUnitesmesure(): \Unitesmesure
     {
-        return $this->unitemesure;
+        return $this->unitesmesure;
     }
 
     /**
-     * @param \Unitesmesure $unitemesure
+     * @param \Unitesmesure $unitesmesure
      */
-    public function setUnitemesure(\Unitesmesure $unitemesure): void
+    public function setUnitesmesure(\Unitesmesure $unitesmesure): void
     {
-        $this->unitemesure = $unitemesure;
+        $this->unitesmesure = $unitesmesure;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantite(): int
+    {
+        return $this->quantite;
+    }
+
+    /**
+     * @param int $quantite
+     */
+    public function setQuantite(int $quantite): void
+    {
+        $this->quantite = $quantite;
     }
 
 

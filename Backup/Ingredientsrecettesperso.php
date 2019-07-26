@@ -43,7 +43,7 @@ class Ingredientsrecettesperso
      *
      * @ORM\ManyToOne(targetEntity="Ingredients")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idIngredient", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idIngredient", referencedColumnName="ingredients_id")
      * })
      */
     private $idingredient;

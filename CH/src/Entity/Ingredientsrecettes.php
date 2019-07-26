@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredientsrecettes
  *
- * @ORM\Table(name="ingredientsRecettes", indexes={@ORM\Index(name="idRecette", columns={"idRecette", "idIngredient"}), @ORM\Index(name="idIngredient", columns={"idIngredient"}), @ORM\Index(name="IDX_4FDA44359020862", columns={"idRecette"})})
+ * @ORM\Table(name="ingredientsRecettes", indexes={@ORM\Index(name="recette_id", columns={"recette_id", "ingredients_id"}), @ORM\Index(name="ingredients_id", columns={"ingredients_id"}), @ORM\Index(name="IDX_4FDA44359020862", columns={"recette_id"})})
  * @ORM\Entity
  */
 class Ingredientsrecettes
@@ -26,20 +26,41 @@ class Ingredientsrecettes
      *
      * @ORM\ManyToOne(targetEntity="Recettes")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idRecette", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="recettes_id", referencedColumnName="id")
      * })
      */
-    private $idrecette;
+    private $recette;
 
     /**
      * @var \Ingredients
      *
      * @ORM\ManyToOne(targetEntity="Ingredients")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idIngredient", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ingredients_id", referencedColumnName="ingredients_id")
      * })
      */
-    private $idingredient;
+    private $ingredient;
+
+    /**
+     * @ORM\Column(name="quantite", type="float", nullable=false)
+     */
+    private $quantite;
+
+    /**
+     * @return mixed
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
+    }
+
+    /**
+     * @param mixed $quantite
+     */
+    public function setQuantite($quantite): void
+    {
+        $this->quantite = $quantite;
+    }
 
     /**
      * @return int
@@ -60,33 +81,33 @@ class Ingredientsrecettes
     /**
      * @return \Recettes
      */
-    public function getIdrecette(): \Recettes
+    public function getRecette(): \Recettes
     {
-        return $this->idrecette;
+        return $this->recette;
     }
 
     /**
      * @param \Recettes $idrecette
      */
-    public function setIdrecette(\Recettes $idrecette): void
+    public function setRecette(\Recettes $recette): void
     {
-        $this->idrecette = $idrecette;
+        $this->recette = $recette;
     }
 
     /**
      * @return \Ingredients
      */
-    public function getIdingredient(): \Ingredients
+    public function getIngredient(): \Ingredients
     {
-        return $this->idingredient;
+        return $this->ingredient;
     }
 
     /**
      * @param \Ingredients $idingredient
      */
-    public function setIdingredient(\Ingredients $idingredient): void
+    public function setIngredient(\Ingredients $ingredient): void
     {
-        $this->idingredient = $idingredient;
+        $this->ingredient = $ingredient;
     }
 
 
