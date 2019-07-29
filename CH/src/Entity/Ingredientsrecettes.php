@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ingredientsrecettes
  *
  * @ORM\Table(name="ingredientsRecettes", indexes={@ORM\Index(name="recette_id", columns={"recette_id"}), @ORM\Index(name="ingredients_id", columns={"ingredients_id"}), @ORM\Index(name="IDX_4FDA44359020862", columns={"recette_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\IngredientsrecettesRepository")
  */
 class Ingredientsrecettes
 {
@@ -43,9 +43,6 @@ class Ingredientsrecettes
 
     /**
      * @ORM\Column(name="quantite", type="float", nullable=false)
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ingredients_id", referencedColumnName="id")
-     * })
      */
     private $quantite;
 
@@ -111,6 +108,30 @@ class Ingredientsrecettes
     public function setIngredient(\Ingredients $ingredient): void
     {
         $this->ingredient = $ingredient;
+    }
+
+    public function getRecetteId(): \Recettes
+    {
+        return $this->recette_id;
+    }
+
+    public function setRecetteId(?Recettes $recette_id): self
+    {
+        $this->recette_id = $recette_id;
+
+        return $this;
+    }
+
+    public function getIngredientId(): \Ingredients
+    {
+        return $this->ingredient_id;
+    }
+
+    public function setIngredientId(?Ingredients $ingredient_id): self
+    {
+        $this->ingredient_id = $ingredient_id;
+
+        return $this;
     }
 
 

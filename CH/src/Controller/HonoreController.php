@@ -7,6 +7,7 @@ use App\Entity\Ingredientsrecettes;
 use App\Entity\Recettes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 class HonoreController extends AbstractController
 {
@@ -35,7 +36,7 @@ class HonoreController extends AbstractController
      * @Route("/404", name="notFound")
      */
     public function notFound() {
-        return $this->render('honore/404.html.twig', [
+        return $this->render('exception/404.html.twig', [
 
         ]);
     }
@@ -44,7 +45,7 @@ class HonoreController extends AbstractController
      * @Route("/403", name="noPermission")
      */
     public function noPersmission() {
-        return $this->render('honore/403.html.twig', [
+        return $this->render('exception/403.html.twig', [
 
         ]);
     }
@@ -68,13 +69,19 @@ class HonoreController extends AbstractController
         $recette = $this->getDoctrine()
             ->getRepository(Recettes::class)
             ->find($id);
-        $ingredientsrecettes = $this->getDoctrine()
+//        $ingredientsrecettes = $this->getDoctrine()
+//            ->getRepository(Ingredientsrecettes::class)
+//            ->find($id);
+        $recettesid = $id;
+
+        $quantitesIngredients = $this->getDoctrine()
             ->getRepository(Ingredientsrecettes::class)
-            ->findAll();
+            ->findByRecetteId($recettesid);
 
         return $this->render('honore/recetteshow.html.twig', [
             'recette' => $recette,
-            'ingredientsrecettes' => $ingredientsrecettes
+//            'ingredientsrecettes' => $ingredientsrecettes,
+            'quantitesIngredients' => $quantitesIngredients
         ]);
 
     }

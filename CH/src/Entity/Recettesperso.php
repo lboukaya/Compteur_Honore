@@ -52,5 +52,58 @@ class Recettesperso
      */
     private $idutilisateur;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getIngredients(): ?int
+    {
+        return $this->ingredients;
+    }
+
+    public function setIngredients(int $ingredients): self
+    {
+        $this->ingredients = $ingredients;
+
+        return $this;
+    }
+
+    public function getIngredientsperso(): ?int
+    {
+        return $this->ingredientsperso;
+    }
+
+    public function setIngredientsperso(int $ingredientsperso): self
+    {
+        $this->ingredientsperso = $ingredientsperso;
+
+        return $this;
+    }
+
+    public function getIdutilisateur(): ?User
+    {
+        return $this->idutilisateur;
+    }
+
+    public function setIdutilisateur(?User $idutilisateur): self
+    {
+        $this->idutilisateur = $idutilisateur;
+
+        return $this;
+    }
+
 
 }

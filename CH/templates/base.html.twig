@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css">
     <link rel="stylesheet" href="https://devweb06.fr/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Indie+Flower|Kalam|Lacquer&display=swap" rel="stylesheet">
 
     <title>{% block title %}Accueil{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
@@ -21,7 +22,7 @@
     </button>
 
     <div class="navbar-collapse collapse" id="navbarColor03" style="">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav m-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
             </li>
@@ -31,27 +32,37 @@
             <li class="nav-item">
                 <a class="nav-link" href="/calculs">Calculs</a>
             </li>
-{#            <li class="nav-item">#}
-{#                <a class="nav-link" href="/about">À propos</a>#}
+{#            {% if not app.user %}#}
+{#            <li class="nav-item ml-5">#}
+{#                <a class="nav-link" href="/connexion">Connexion</a>#}
 {#            </li>#}
-            {% if not app.user %}
-            <li class="nav-item ml-5">
-                <a class="nav-link" href="/connexion">Se connecter</a>
-            </li>
-            {% else %}
-                <li class="nav-item ml-5">
-                    <p class="nav-link" id="navName">Bienvenue <strong>{{ app.user.username }}</strong></p>
-                </li>
-            <li class="nav-item ml-lg-2">
-                <a class="nav-link" href="/deconnexion">Se déconnecter</a>
-            </li>
-            {% endif %}
+{#            {% else %}#}
+{#                <li class="nav-item ml-5">#}
+{#                    <p class="nav-link" id="navName">Bienvenue <strong>{{ app.user.username }}</strong></p>#}
+{#                </li>#}
+{#            <li class="nav-item ml-lg-2">#}
+{#                <a class="nav-link" href="/deconnexion">Déconnexion</a>#}
+{#            </li>#}
+{#            {% endif %}#}
         </ul>
-
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
-        </form>
+        <ul class="navbar-nav ml-auto">
+        {% if not app.user %}
+            <li class="nav-item ml-5">
+                <a class="nav-link" href="/connexion">Connexion</a>
+            </li>
+        {% else %}
+            <li class="nav-item ml-5">
+                <p class="nav-link" id="navName">Bienvenue {{ app.user.username }}</p>
+            </li>
+            <li class="nav-item ml-lg-2">
+                <a class="nav-link" href="/deconnexion">Déconnexion</a>
+            </li>
+        {% endif %}
+        </ul>
+{#        <form class="form-inline my-2 my-lg-0">#}
+{#            <input class="form-control mr-sm-2" type="text" placeholder="">#}
+{#            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>#}
+{#        </form>#}
     </div>
 </nav>
 <div class="container">

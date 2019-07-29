@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<section id="detailsRecette">
     <h1 class="pageTitle">{{ recette.nom }}</h1>
-    <h4>Voici la recette du {{ recette.nom }}</h4>
+    {% set i = 0 %}
     {% for ingredient in recette.ingredients %}
-        <p class="m-3">{{ ingredient.nom }} : {{ ingredient.quantite }}</p>
+        {{ dump(quantitesIngredients) }}
+        <label for="">{{ ingredient.nom }}</label><br>
+        <input type="text" value="{{ quantitesIngredients[i].quantite }}"><span>{{ ingredient.unitesmesure.abreviation }}</span><br>
+        {% set i = i + 1 %}
 
     {% endfor %}
 
-
+</section>
 {% endblock %}

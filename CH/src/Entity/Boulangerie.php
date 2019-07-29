@@ -55,5 +55,58 @@ class Boulangerie
      */
     private $recette;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPoids(): ?int
+    {
+        return $this->poids;
+    }
+
+    public function setPoids(int $poids): self
+    {
+        $this->poids = $poids;
+
+        return $this;
+    }
+
+    public function getRecetteperso(): ?Recettesperso
+    {
+        return $this->recetteperso;
+    }
+
+    public function setRecetteperso(?Recettesperso $recetteperso): self
+    {
+        $this->recetteperso = $recetteperso;
+
+        return $this;
+    }
+
+    public function getRecette(): ?Recettes
+    {
+        return $this->recette;
+    }
+
+    public function setRecette(?Recettes $recette): self
+    {
+        $this->recette = $recette;
+
+        return $this;
+    }
+
 
 }

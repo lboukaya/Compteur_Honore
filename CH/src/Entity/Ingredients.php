@@ -38,16 +38,7 @@ class Ingredients
      */
     private $unitesmesure;
 
-    /**
-     * @var int
-     *
-     * @ORM\JoinTable(name="Ingredientsrecettes")
-     * })
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="quantite", referencedColumnName="quantite")
-     * })
-     */
-    private $quantite;
+
 
     /**
      * @return int
@@ -81,13 +72,13 @@ class Ingredients
         $this->nom = $nom;
     }
 
-    /**
-     * @return App\Entity\Unitesmesure
-     */
-    public function getUnitesmesure(): ?string
-    {
-        return $this->unitesmesure;
-    }
+//    /**
+//     * @return \Unitesmesure
+//     */
+//    public function getUnitesmesure(): \Unitesmesure
+//    {
+//        return $this->unitesmesure;
+//    }
 
 
     /**
@@ -104,6 +95,13 @@ class Ingredients
     public function setQuantite(int $quantite): void
     {
         $this->quantite = $quantite;
+    }
+
+    public function setUnitesmesure(?Unitesmesure $unitesmesure): self
+    {
+        $this->unitesmesure = $unitesmesure;
+
+        return $this;
     }
 
 

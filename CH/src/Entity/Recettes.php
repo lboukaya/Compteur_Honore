@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -10,8 +11,9 @@ use Doctrine\ORM\Mapping\JoinColumn;
  * Recettes
  *
  * @ORM\Table(name="recettes")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\RecettesRepository")
  */
+
 class Recettes
 {
     /**
@@ -95,7 +97,41 @@ class Recettes
         $this->ingredients = $ingredients;
     }
 
+    public function addIngredient(Ingredients $ingredient): self
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients[] = $ingredient;
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredients $ingredient): self
+    {
+        if ($this->ingredients->contains($ingredient)) {
+            $this->ingredients->removeElement($ingredient);
+        }
+
+        return $this;
+    }
 
 
+    /**
+     * @var \Unitesmesure
+     *
+     * @ORM\ManyToOne(targetEntity="Unitesmesure")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * })
+     */
+    private $unitesmesure;
+
+    /**
+     * @return App\Entity\Unitesmesure
+     */
+    public function getUnitesmesure(): ?string
+    {
+        return $this->unitesmesure;
+    }
 
 }
