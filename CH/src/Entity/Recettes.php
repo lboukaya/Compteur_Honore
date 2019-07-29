@@ -14,12 +14,21 @@ use Doctrine\ORM\Mapping\JoinColumn;
  */
 class Recettes
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
 
     /**
      * @ORM\ManyToMany(targetEntity=Ingredients::class)
      * @ORM\JoinTable(name="Ingredientsrecettes")
-     * joinColumns={@JoinColumn(name="recette_id", referencedColumnName="ingredients_id")},
-     * inverseJoinColumns={@JoinColumn(name="ingredients_id", referencedColumnName="ingredients_id", unique=true)}
+     * joinColumns={@JoinColumn(name="ingredients_id", referencedColumnName="id")},
+     * inverseJoinColumns={@JoinColumn(name="recettes_id", referencedColumnName="id")}
      *
      */
     protected $ingredients;
@@ -29,14 +38,7 @@ class Recettes
         $this->ingredients = new ArrayCollection();
     }
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+
 
     /**
      * @var string

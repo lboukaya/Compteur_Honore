@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredientsrecettes
  *
- * @ORM\Table(name="ingredientsRecettes", indexes={@ORM\Index(name="recette_id", columns={"recette_id", "ingredients_id"}), @ORM\Index(name="ingredients_id", columns={"ingredients_id"}), @ORM\Index(name="IDX_4FDA44359020862", columns={"recette_id"})})
+ * @ORM\Table(name="ingredientsRecettes", indexes={@ORM\Index(name="recette_id", columns={"recette_id"}), @ORM\Index(name="ingredients_id", columns={"ingredients_id"}), @ORM\Index(name="IDX_4FDA44359020862", columns={"recette_id"})})
  * @ORM\Entity
  */
 class Ingredientsrecettes
@@ -29,20 +29,23 @@ class Ingredientsrecettes
      *   @ORM\JoinColumn(name="recettes_id", referencedColumnName="id")
      * })
      */
-    private $recette;
+    private $recette_id;
 
     /**
      * @var \Ingredients
      *
      * @ORM\ManyToOne(targetEntity="Ingredients")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ingredients_id", referencedColumnName="ingredients_id")
+     *   @ORM\JoinColumn(name="ingredients_id", referencedColumnName="id")
      * })
      */
-    private $ingredient;
+    private $ingredient_id;
 
     /**
      * @ORM\Column(name="quantite", type="float", nullable=false)
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ingredients_id", referencedColumnName="id")
+     * })
      */
     private $quantite;
 
@@ -81,17 +84,17 @@ class Ingredientsrecettes
     /**
      * @return \Recettes
      */
-    public function getRecette(): \Recettes
+    public function getRecette_id(): \Recettes
     {
-        return $this->recette;
+        return $this->recette_id;
     }
 
     /**
-     * @param \Recettes $idrecette
+     * @param \Recettes $idrecette_id
      */
-    public function setRecette(\Recettes $recette): void
+    public function setRecette_id(\Recettes $recette_id): void
     {
-        $this->recette = $recette;
+        $this->recette_id = $recette_id;
     }
 
     /**
@@ -99,7 +102,7 @@ class Ingredientsrecettes
      */
     public function getIngredient(): \Ingredients
     {
-        return $this->ingredient;
+        return $this->ingredient_id;
     }
 
     /**

@@ -5,8 +5,7 @@
     <h1 class="pageTitle">{{ recette.nom }}</h1>
     <h4>Voici la recette du {{ recette.nom }}</h4>
     {% for ingredient in recette.ingredients %}
-        <p class="m-3">{{ ingredient.nom }}
-            </p>
+        <p class="m-3">{{ ingredient.nom }} : {{ ingredient.quantite }}</p>
 
     {% endfor %}
 

@@ -62,15 +62,15 @@ class HonoreController extends AbstractController
     }
 
     /**
-     * @Route("/recettes/{ingredients_id}", name="recettes_show")
+     * @Route("/recettes/{id}", name="recettes_show")
      */
-    public function showRecette($ingredients_id){
+    public function showRecette($id){
         $recette = $this->getDoctrine()
             ->getRepository(Recettes::class)
-            ->find($ingredients_id);
+            ->find($id);
         $ingredientsrecettes = $this->getDoctrine()
             ->getRepository(Ingredientsrecettes::class)
-            ->findBy(array('recette' => $recette));
+            ->findAll();
 
         return $this->render('honore/recetteshow.html.twig', [
             'recette' => $recette,

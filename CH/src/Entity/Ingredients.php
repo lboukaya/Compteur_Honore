@@ -15,11 +15,11 @@ class Ingredients
     /**
      * @var int
      *
-     * @ORM\Column(name="ingredients_id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $ingredients_id;
+    private $id;
 
     /**
      * @var string
@@ -43,23 +43,26 @@ class Ingredients
      *
      * @ORM\JoinTable(name="Ingredientsrecettes")
      * })
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quantite", referencedColumnName="quantite")
+     * })
      */
     private $quantite;
 
     /**
      * @return int
      */
-    public function getIngredients_id(): int
+    public function getId(): int
     {
-        return $this->ingredients_id;
+        return $this->id;
     }
 
     /**
-     * @param int $ingredients_id
+     * @param int $id
      */
-    public function setIngredients_id(int $ingredients_id): void
+    public function setId(int $id): void
     {
-        $this->ingredients_id = $ingredients_id;
+        $this->id = $id;
     }
 
     /**
@@ -79,25 +82,18 @@ class Ingredients
     }
 
     /**
-     * @return \Unitesmesure
+     * @return App\Entity\Unitesmesure
      */
-    public function getUnitesmesure(): \Unitesmesure
+    public function getUnitesmesure(): ?string
     {
         return $this->unitesmesure;
     }
 
-    /**
-     * @param \Unitesmesure $unitesmesure
-     */
-    public function setUnitesmesure(\Unitesmesure $unitesmesure): void
-    {
-        $this->unitesmesure = $unitesmesure;
-    }
 
     /**
      * @return int
      */
-    public function getQuantite(): int
+    public function getQuantite(): ?int
     {
         return $this->quantite;
     }

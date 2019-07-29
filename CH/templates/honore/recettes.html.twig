@@ -9,8 +9,7 @@
 
     <p>Voici les recettes disponibles : </p>
     {% for recette in recettes %}
-
-      <a href="{{ path('recettes_show',  {'id': recette.id}) }}">{{ recette.nom }}<br></a>
+      <a href="{{ path('recettes_show', {'id': recette.id}) }}">{{ recette.nom }}<br></a>
 
     {% endfor %}
 
