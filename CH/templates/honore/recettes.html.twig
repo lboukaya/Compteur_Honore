@@ -7,11 +7,19 @@
 <section id="recettes">
     <h1 class="pageTitle">Les Recettes</h1>
 
-    <p>Voici les recettes disponibles : </p>
+    <p>Recettes de base : </p>
     {% for recette in recettes %}
       <a href="{{ path('recettes_show', {'id': recette.id}) }}">{{ recette.nom }}<br></a>
 
     {% endfor %}
+
+{#    <p class="mt-5">Recettes personnalisées : </p>#}
+{#    {% for recetteperso in recettesperso %}#}
+{#        <a href="{{ path('recettes_show', {'id': recetteperso.id}) }}">{{ recetteperso.nom }}<br></a>#}
+
+{#    {% endfor %}#}
+
+{#    <button class="btn btn-secondary">Ajouter une recette</button>#}
 
 </section>
 

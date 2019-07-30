@@ -93,7 +93,7 @@ class Recettesperso
         return $this;
     }
 
-    public function getIdutilisateur(): ?User
+    public function getIdutilisateur(): \User
     {
         return $this->idutilisateur;
     }

@@ -3,14 +3,39 @@
 {% block body %}
 <section id="detailsRecette">
     <h1 class="pageTitle">{{ recette.nom }}</h1>
+    <script>
+        var ingredients = [];
+    </script>
     {% set i = 0 %}
     {% for ingredient in recette.ingredients %}
-        {{ dump(quantitesIngredients) }}
+
         <label for="">{{ ingredient.nom }}</label><br>
-        <input type="text" value="{{ quantitesIngredients[i].quantite }}"><span>{{ ingredient.unitesmesure.abreviation }}</span><br>
+        <input type="number" id="ing{{ ingredient.id }}" class="inputIng" value="{{ quantitesIngredients[i].quantite }}"><span> {{ ingredient.unitesmesure.abreviation }} </span><br>
+        <script>
+            ingredients['ing{{ ingredient.id }}'] = {{ quantitesIngredients[i].quantite }};
+            $('#ing{{ ingredient.id }}').val(ingredients['ing{{ ingredient.id }}']);
+
+        </script>
         {% set i = i + 1 %}
-
     {% endfor %}
-
+    <script>
+        $('.inputIng').on('input',function(e){
+            var idElement = this.id;
+            console.log(idElement);
+            var next = $(this).val();
+            console.log(next);
+            var old = ingredients[idElement];
+            console.log(old);
+            var multi = next/old;
+            console.log(multi);
+            updateValues(multi);
+        });
+        function updateValues(multiplicateur){
+            $( ".inputIng" ).each(function() {
+                console.log($(this)[0].id);
+                $(this).val(ingredients[$(this)[0].id]*multiplicateur);
+            });
+        }
+    </script>
 </section>
 {% endblock %}

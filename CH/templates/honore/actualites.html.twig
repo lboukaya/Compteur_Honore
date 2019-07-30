@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="container" id="news">
+    <h1 class="pageTitle">Les Actualités du monde Boulanger</h1>
+    {{ dump(rss) }}
+    {% for news in rss.channel.item %}
+        <div class="article">
+        <a href="{{ news.link }}"><h4>{{ news.title }}</h4></a>
+            <img src=" {{ news.enclosure }} " alt="">
+        <p>{{ news.description | raw }}</p>
+        </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

@@ -5,9 +5,16 @@ namespace App\Controller;
 use App\Entity\Ingredients;
 use App\Entity\Ingredientsrecettes;
 use App\Entity\Recettes;
+use App\Entity\Recettesperso;
+use App\Entity\User;
+use App\Form\AddFormType;
+use App\Form\RegistrationType;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class HonoreController extends AbstractController
 {
@@ -56,9 +63,13 @@ class HonoreController extends AbstractController
     public function recettes() {
         $repo = $this->getDoctrine()->getRepository(Recettes::class);
         $recettes = $repo->findAll();
+        $repo2 = $this->getDoctrine()->getRepository(Recettesperso::class);
+        $recettesperso = $repo2->findAll();
+
         return $this->render('honore/recettes.html.twig', [
             'controller_name' => 'HonoreController',
-            'recettes' => $recettes
+            'recettes' => $recettes,
+            'recettesperso' => $recettesperso
         ]);
     }
 
@@ -69,10 +80,11 @@ class HonoreController extends AbstractController
         $recette = $this->getDoctrine()
             ->getRepository(Recettes::class)
             ->find($id);
-//        $ingredientsrecettes = $this->getDoctrine()
-//            ->getRepository(Ingredientsrecettes::class)
-//            ->find($id);
         $recettesid = $id;
+
+        $recetteperso = $this->getDoctrine()
+            ->getRepository(Recettesperso::class)
+            ->find($id);
 
         $quantitesIngredients = $this->getDoctrine()
             ->getRepository(Ingredientsrecettes::class)
@@ -80,8 +92,8 @@ class HonoreController extends AbstractController
 
         return $this->render('honore/recetteshow.html.twig', [
             'recette' => $recette,
-//            'ingredientsrecettes' => $ingredientsrecettes,
-            'quantitesIngredients' => $quantitesIngredients
+            'quantitesIngredients' => $quantitesIngredients,
+            'recetteperso' => $recetteperso
         ]);
 
     }
@@ -95,12 +107,16 @@ class HonoreController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/about", name="about")
-     */
-    public function about() {
-        return $this->render('honore/about.html.twig', [
 
-        ]);
+    /**
+     * @Route("/actualites", name="actualites")
+     */
+
+    public function viewRSSAction(Request $request){
+        $rss = simplexml_load_file('http://plus.lefigaro.fr/tag/boulangerie/rss.xml');
+
+        return $this->render('honore/actualites.html.twig', array(
+            'rss' => $rss,
+        ));
     }
 }

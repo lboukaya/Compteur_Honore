@@ -72,14 +72,6 @@ class Ingredients
         $this->nom = $nom;
     }
 
-//    /**
-//     * @return \Unitesmesure
-//     */
-//    public function getUnitesmesure(): \Unitesmesure
-//    {
-//        return $this->unitesmesure;
-//    }
-
 
     /**
      * @return int
@@ -97,12 +89,19 @@ class Ingredients
         $this->quantite = $quantite;
     }
 
+    public function getUnitesmesure(): ?Unitesmesure
+    {
+        return $this->unitesmesure;
+    }
+
     public function setUnitesmesure(?Unitesmesure $unitesmesure): self
     {
         $this->unitesmesure = $unitesmesure;
 
         return $this;
     }
+
+
 
 
 }

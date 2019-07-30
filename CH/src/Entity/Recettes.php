@@ -116,22 +116,22 @@ class Recettes
     }
 
 
-    /**
-     * @var \Unitesmesure
-     *
-     * @ORM\ManyToOne(targetEntity="Unitesmesure")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
-     * })
-     */
-    private $unitesmesure;
-
-    /**
-     * @return App\Entity\Unitesmesure
-     */
-    public function getUnitesmesure(): ?string
-    {
-        return $this->unitesmesure;
-    }
-
+//    /**
+//     * @var \Unitesmesure
+//     *
+//     * @ORM\ManyToOne(targetEntity="Unitesmesure")
+//     * @ORM\JoinColumns({
+//     * @ORM\JoinColumn(name="uniteMesure", referencedColumnName="id")
+//     * })
+//     */
+//    private $unitesmesure;
+//
+//    /**
+//     * @return \Unitesmesure
+//     */
+//    public function getUnitesmesure(): \Unitesmesure
+//    {
+//        return $this->unitesmesure;
+//    }
+//
 }
