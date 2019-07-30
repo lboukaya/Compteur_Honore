@@ -22,7 +22,6 @@ final class Version20190725074622 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE ingredientsRecettes CHANGE idRecette idRecette INT DEFAULT NULL, CHANGE idIngredient idIngredient INT DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +29,5 @@ final class Version20190725074622 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE ingredientsRecettes CHANGE idRecette idRecette INT NOT NULL, CHANGE idIngredient idIngredient INT NOT NULL');
     }
 }

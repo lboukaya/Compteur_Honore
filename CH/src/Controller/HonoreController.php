@@ -8,6 +8,7 @@ use App\Entity\Recettes;
 use App\Entity\Recettesperso;
 use App\Entity\User;
 use App\Form\AddFormType;
+use App\Form\AddRecetteType;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -99,6 +100,29 @@ class HonoreController extends AbstractController
     }
 
     /**
+     * @Route("/add", name="add_recette")
+     */
+    public function addRecette(Request $request, ObjectManager $manager){
+        $newRecette = new Recettesperso();
+
+        $form = $this->createForm(AddRecetteType::class, $newRecette);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($newRecette);
+            $manager->flush();
+
+            return $this->redirectToRoute('recettes');
+        }
+
+        return $this->render('honore/addrecette.html.twig', [
+            'form' => $form->createView()
+        ]);
+}
+
+
+    /**
      * @Route("/calculs", name="calculs")
      */
     public function calculs() {
@@ -113,7 +137,7 @@ class HonoreController extends AbstractController
      */
 
     public function viewRSSAction(Request $request){
-        $rss = simplexml_load_file('http://plus.lefigaro.fr/tag/boulangerie/rss.xml');
+        $rss = simplexml_load_file('https://www.boulangerie.org/feed/');
 
         return $this->render('honore/actualites.html.twig', array(
             'rss' => $rss,

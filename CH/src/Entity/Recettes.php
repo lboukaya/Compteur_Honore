@@ -115,23 +115,4 @@ class Recettes
         return $this;
     }
 
-
-//    /**
-//     * @var \Unitesmesure
-//     *
-//     * @ORM\ManyToOne(targetEntity="Unitesmesure")
-//     * @ORM\JoinColumns({
-//     * @ORM\JoinColumn(name="uniteMesure", referencedColumnName="id")
-//     * })
-//     */
-//    private $unitesmesure;
-//
-//    /**
-//     * @return \Unitesmesure
-//     */
-//    public function getUnitesmesure(): \Unitesmesure
-//    {
-//        return $this->unitesmesure;
-//    }
-//
 }

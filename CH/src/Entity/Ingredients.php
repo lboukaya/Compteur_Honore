@@ -73,21 +73,6 @@ class Ingredients
     }
 
 
-    /**
-     * @return int
-     */
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    /**
-     * @param int $quantite
-     */
-    public function setQuantite(int $quantite): void
-    {
-        $this->quantite = $quantite;
-    }
 
     public function getUnitesmesure(): ?Unitesmesure
     {

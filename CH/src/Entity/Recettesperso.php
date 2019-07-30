@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * Recettesperso
@@ -21,6 +23,23 @@ class Recettesperso
      */
     private $id;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Ingredients::class)
+     * @ORM\JoinTable(name="Ingredientsrecettes")
+     * joinColumns={@JoinColumn(name="ingredients_id", referencedColumnName="id")},
+     * inverseJoinColumns={@JoinColumn(name="recettes_id", referencedColumnName="id")}
+     *
+     */
+    protected $ingredients;
+
+    public function __construct()
+    {
+        $this->ingredients = new ArrayCollection();
+    }
+
+
+
     /**
      * @var string
      *
@@ -29,81 +48,69 @@ class Recettesperso
     private $nom;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="ingredients", type="integer", nullable=false)
+     * @return string
      */
-    private $ingredients;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="ingredientsPerso", type="integer", nullable=false)
-     */
-    private $ingredientsperso;
-
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtilisateur", referencedColumnName="id")
-     * })
-     */
-    private $idutilisateur;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getNom(): ?string
+    public function getNom(): string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    /**
+     * @param string $nom
+     */
+    public function setNom(string $nom): void
     {
         $this->nom = $nom;
-
-        return $this;
     }
 
-    public function getIngredients(): ?int
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIngredients()
     {
         return $this->ingredients;
     }
 
-    public function setIngredients(int $ingredients): self
+    /**
+     * @param mixed $ingredients
+     */
+    public function setIngredients($ingredients): void
     {
         $this->ingredients = $ingredients;
+    }
+
+    public function addIngredient(Ingredients $ingredient): self
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients[] = $ingredient;
+        }
 
         return $this;
     }
 
-    public function getIngredientsperso(): ?int
+    public function removeIngredient(Ingredients $ingredient): self
     {
-        return $this->ingredientsperso;
-    }
-
-    public function setIngredientsperso(int $ingredientsperso): self
-    {
-        $this->ingredientsperso = $ingredientsperso;
+        if ($this->ingredients->contains($ingredient)) {
+            $this->ingredients->removeElement($ingredient);
+        }
 
         return $this;
     }
-
-    public function getIdutilisateur(): \User
-    {
-        return $this->idutilisateur;
-    }
-
-    public function setIdutilisateur(?User $idutilisateur): self
-    {
-        $this->idutilisateur = $idutilisateur;
-
-        return $this;
-    }
-
 
 }
