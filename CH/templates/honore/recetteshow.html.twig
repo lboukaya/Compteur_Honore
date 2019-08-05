@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
 <section id="detailsRecette">
     <h1 class="pageTitle">{{ recette.nom }}</h1>
     <script>
@@ -10,11 +11,11 @@
     {% for ingredient in recette.ingredients %}
 
         <label for="">{{ ingredient.nom }}</label><br>
-        <input type="number" id="ing{{ ingredient.id }}" class="inputIng" value="{{ quantitesIngredients[i].quantite }}"><span> {{ ingredient.unitesmesure.abreviation }} </span><br>
+        <input type="number" id="ing{{ ingredient.id }}" class="inputIng" value="{{ quantitesIngredients[i].quantite }}">
+        <span> {{ ingredient.unitesmesure.abreviation }} </span><br>
         <script>
             ingredients['ing{{ ingredient.id }}'] = {{ quantitesIngredients[i].quantite }};
             $('#ing{{ ingredient.id }}').val(ingredients['ing{{ ingredient.id }}']);
-
         </script>
         {% set i = i + 1 %}
     {% endfor %}

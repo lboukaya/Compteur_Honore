@@ -81,58 +81,25 @@ class Ingredientsrecettes
     /**
      * @return \Recettes
      */
-    public function getRecette_id(): \Recettes
+    public function getRecette_id(): ?Recettes
     {
         return $this->recette_id;
     }
 
-    /**
-     * @param \Recettes $idrecette_id
-     */
-    public function setRecette_id(\Recettes $recette_id): void
+
+    public function setRecette_id(?Recettes $recette_id): self
     {
         $this->recette_id = $recette_id;
     }
 
-    /**
-     * @return \Ingredients
-     */
-    public function getIngredient(): \Ingredients
+    public function getIngredient(): ?Ingredients
     {
         return $this->ingredient_id;
     }
 
-    /**
-     * @param \Ingredients $idingredient
-     */
-    public function setIngredient(\Ingredients $ingredient): void
+
+    public function setIngredient(?Ingredients $ingredient): self
     {
         $this->ingredient = $ingredient;
     }
-
-    public function getRecetteId(): \Recettes
-    {
-        return $this->recette_id;
-    }
-
-    public function setRecetteId(?Recettes $recette_id): self
-    {
-        $this->recette_id = $recette_id;
-
-        return $this;
-    }
-
-    public function getIngredientId(): \Ingredients
-    {
-        return $this->ingredient_id;
-    }
-
-    public function setIngredientId(?Ingredients $ingredient_id): self
-    {
-        $this->ingredient_id = $ingredient_id;
-
-        return $this;
-    }
-
-
 }

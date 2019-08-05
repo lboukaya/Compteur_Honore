@@ -1,0 +1,168 @@
+/* GLOBAL PARAMETERS*/
+
+html, body{
+    height: 100%;
+    font-family: 'Kalam', cursive;
+    font-size: 16px;
+}
+
+input{
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.container{
+    padding-bottom: 20px;
+}
+
+/* !! GLOBAL PARAMETERS !! */
+
+/* HEADER */
+.navbar-brand img{
+    width: 60px;
+}
+.navbar a{
+    margin: 0 5px 0 5px;
+}
+
+.navbar ul li a:focus, .navbar ul li a:active{
+    color: #000 !important
+}
+
+#navName{
+    display: none;
+    color: chocolate;
+}
+#navbarColor03 .ml-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* !! HEADER !! */
+
+/* HOMEPAGE */
+#accueil{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#logoAccueil{
+    margin-top: 20px;
+    width: 200px;
+}
+
+/* !! HOMEPAGE!! */
+
+/* SIGN FORMS */
+.pageTitle{
+    margin : 30px;
+    text-align: center;
+}
+
+.form input{
+    margin-bottom: 30px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form form{
+    width: 90%;
+}
+
+/* !! SIGN FORMS !! */
+
+/* DETAILS RECETTES */
+
+#detailsRecette input{
+    margin-bottom: 20px;
+    width: 60px;
+}
+
+/* !! DETAILS RECETTES !! */
+
+/* NEWS */
+
+.article{
+    border : 1px solid lightgray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* !! NEWS  !! */
+
+/* 404 */
+
+.error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error img{
+    margin: 20px;
+    width: 40%;
+}
+.titleError{
+    font-weight: bold;
+    font-size: 30px;
+}
+.textError{
+    font-size: 20px;
+}
+.textError span{
+    font-size: 14px;
+}
+
+/* !! 404 // */
+
+/* FOOTER */
+
+footer{
+    background-color: white;
+    border-color: #eeeeee;
+    border-width: 1px;
+    border-style: solid;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* !! FOOTER !! */
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 992px) {
+    .form form {
+        width: 60%;
+    }
+
+    .error img {
+        margin: 20px;
+        width: 20%;
+    }
+
+    .titleError {
+        font-size: 40px;
+    }
+
+    .textError {
+        font-size: 24px;
+    }
+
+    .textError span {
+        font-size: 18px;
+    }
+
+    #navName {
+        display: block;
+    }
+
+    ul {
+        margin-top: 1em;
+    }
+}

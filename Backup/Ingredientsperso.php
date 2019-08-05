@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredientsperso
  *
- * @ORM\Table(name="ingredientsPerso", indexes={@ORM\Index(name="idUtilisateur", columns={"idUtilisateur"}), @ORM\Index(name="uniteMesure", columns={"uniteMesure"})})
+ * @ORM\Table(name="ingredientsPerso", indexes={@ORM\Index(name="idUtilisateur", columns={"idUtilisateur"}), @ORM\Index(name="unitesMesure", columns={"unitesMesure"})})
  * @ORM\Entity
  */
 class Ingredientsperso
@@ -33,10 +33,10 @@ class Ingredientsperso
      *
      * @ORM\ManyToOne(targetEntity="Unitesmesure")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="uniteMesure", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="unitesMesure", referencedColumnName="id")
      * })
      */
-    private $unitemesure;
+    private $unitesmesure;
 
     /**
      * @var \User

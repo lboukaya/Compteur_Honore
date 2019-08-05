@@ -44,7 +44,7 @@ class HonoreController extends AbstractController
      * @Route("/404", name="notFound")
      */
     public function notFound() {
-        return $this->render('exception/404.html.twig', [
+        return $this->render('exception/error404.html.twig', [
 
         ]);
     }
@@ -53,7 +53,7 @@ class HonoreController extends AbstractController
      * @Route("/403", name="noPermission")
      */
     public function noPersmission() {
-        return $this->render('exception/403.html.twig', [
+        return $this->render('exception/error403.html.twig', [
 
         ]);
     }
@@ -64,13 +64,10 @@ class HonoreController extends AbstractController
     public function recettes() {
         $repo = $this->getDoctrine()->getRepository(Recettes::class);
         $recettes = $repo->findAll();
-        $repo2 = $this->getDoctrine()->getRepository(Recettesperso::class);
-        $recettesperso = $repo2->findAll();
 
         return $this->render('honore/recettes.html.twig', [
             'controller_name' => 'HonoreController',
             'recettes' => $recettes,
-            'recettesperso' => $recettesperso
         ]);
     }
 
@@ -83,9 +80,6 @@ class HonoreController extends AbstractController
             ->find($id);
         $recettesid = $id;
 
-        $recetteperso = $this->getDoctrine()
-            ->getRepository(Recettesperso::class)
-            ->find($id);
 
         $quantitesIngredients = $this->getDoctrine()
             ->getRepository(Ingredientsrecettes::class)
@@ -94,7 +88,6 @@ class HonoreController extends AbstractController
         return $this->render('honore/recetteshow.html.twig', [
             'recette' => $recette,
             'quantitesIngredients' => $quantitesIngredients,
-            'recetteperso' => $recetteperso
         ]);
 
     }

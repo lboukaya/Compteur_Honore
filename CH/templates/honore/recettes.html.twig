@@ -13,13 +13,11 @@
 
     {% endfor %}
 
-    <p class="mt-5">Recettes personnalisées : </p>
-    {% for recetteperso in recettesperso %}
-        <a href="{{ path('recettes_show', {'id': recetteperso.id}) }}">{{ recetteperso.nom }}<br></a>
+{#    <p class="mt-5">Recettes personnalisées : </p>#}
+{#    {% for recetteperso in recettesperso %}#}
+{#        <a href="{{ path('recettes_show', {'id': recetteperso.id}) }}">{{ recetteperso.nom }}<br></a>#}
 
-    {% endfor %}
-
-    <a href="{{ path('add_recette') }}"><button class="btn btn-secondary">Ajouter une recette</button>
+{#    {% endfor %}#}
 
 </section>
 
